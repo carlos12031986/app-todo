@@ -42,4 +42,10 @@ public class TaskController {
 		List<Task> lista = service.allTask();
 		return new ResponseEntity<> (lista,HttpStatus.OK);
 	}
+	
+	@PostMapping(path="update")
+	public String actualiza()
+	{
+		return "hola";
+	}
 }
