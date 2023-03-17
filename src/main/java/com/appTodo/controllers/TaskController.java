@@ -46,6 +46,7 @@ public class TaskController {
 	@PostMapping(path="update")
 	public String actualiza()
 	{
-		return "hola";
+		String variable = "cadena";
+		return variable;
 	}
 }
