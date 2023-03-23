@@ -1,6 +1,10 @@
 package com.appTodo.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,5 +52,42 @@ public class TaskController {
 	{
 		String variable = "cadena";
 		return variable;
+	}
+	
+	@GetMapping(path="/lista")
+	public ResponseEntity lista()
+	{
+		Map respuesta = new HashMap();
+
+		List<Integer> lista = new ArrayList<Integer>();
+		lista = service.obtLista();
+		
+		List<Integer> listPares = new ArrayList<Integer>(); 
+		List<Integer> listImpares = new ArrayList<Integer>(); 
+		Iterator iterador = lista.iterator();
+		
+	    while(iterador.hasNext())
+		{
+	    	int num = (int) iterador.next();
+			if(num%2 ==0)
+			{
+				listPares.add(num);
+			}
+			else
+			{
+				listImpares.add(num);
+			}
+			
+		}
+	    
+	
+	    respuesta.put("Pares",listPares);
+	    respuesta.put("Impares",listImpares);
+	    respuesta.put("Elements total", lista.size());
+	    
+	    Map<String,HashMap> nuevo = new HashMap<String,HashMap>();
+	    nuevo.put("Respuesta", (HashMap) respuesta);
+
+		return new ResponseEntity(nuevo,HttpStatus.OK);
 	}
 }

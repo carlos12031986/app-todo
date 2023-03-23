@@ -9,4 +9,5 @@ public interface TaskServiceImp {
 
 	public Task createTask(TaskInDto task);
 	public List<Task> allTask();
+	public List<Integer> obtLista();
 }
